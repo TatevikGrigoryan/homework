@@ -53,17 +53,22 @@ return `Numbers: ${numberCount}, Strings:${stringCount}`;
 //homework 3.4
 
 function longestWord(sentence){
+debugger;
 let longestWord = '';
 let word = sentence[0];
-for (i = 1; i < sentence.length-1; i++){
-		if(sentence[i] === ' ' || sentence[i] === '_' || sentence[i] === ';' || sentence[i] === ','){
+for (i = 1; i < sentence.length; i ++){
+		if(sentence[i] === ' ' || sentence[i] === '-' || sentence[i] === ','|| i === sentence.length-1 ){
+			 if(i === sentence.length-1 && sentence[i]!=='.' && sentence[i] !== '!' && sentence[i] !== '?'){
+					word += sentence[i];
+             }
 			if(longestWord.length <= word.length){
 				longestWord = word;
 			}
 			word ='';
-			i++;
+			// payman, vorpeszi storaketic heto grvac bacat@ bac toxni
+			(sentence[i] === ',' && sentence[i+1] === ' ')? i += 2: i ++;
 		}
-	word +=sentence[i];
+	word += sentence[i];
 }
 return longestWord;
 }
@@ -71,7 +76,32 @@ return longestWord;
 //homework 3.5
 
 
-Խնդրի պահանջը չեմ հասկանում
+function getLongestSubString(string){
+let longestSubstring = '';
+let tmp = '';
+let index;
+for(let i = 0; i <= string.length; i ++ ){
+	if( string[i] ===' ' || tmp.indexOf(string[i]) === -1){
+		tmp += string[i];
+	 }else {
+		//durs enq hanum bacat@ ete ayn skzbum e
+		if (tmp[0] === ' '){
+			tmp = tmp.slice(1);
+		}
+		//durs enq hanum bacat@ ete ayn verjum e
+		if(tmp[tmp.length - 1] === ' '){
+			tmp = tmp.slice(0, tmp.length-1)
+		}
+		if(longestSubstring.length <= tmp.length){
+			longestSubstring = tmp; 
+     	}
+		index = tmp.indexOf(string[i]);// gtnum enq ayn index@ vorum pahvox element@ krknvel e
+		tmp = tmp.slice(index+1) + string[i];
+		}
+	}
+return longestSubstring;
+}
+
 
 //homework 3.6
 
@@ -84,30 +114,36 @@ let temp = Math.floor(str.length/3);
 return res + str.slice(temp*3,str.length);
 }
 
-
-//homework 3.7
+// homework 3.7
 
 function productBiggestNegative(arr){
 let maxNegative = -Infinity;
+let isNegative = 0;
 let res = 1;
 if(arr.length === 1){
 	return'Invalid Argument'; 
 	}
 for(i = 0; i < arr.length; i ++){
-let ban = arr[i].length;
 	for(j = 0; j < arr[i].length; j ++){
-		if(arr[i][j] < 0  && maxNegative < arr[i][j]){
+		if(!parseInt(arr[i][j]) && arr[i][j] !== -Infinity && arr[i][j] !== Infinity && arr[i][j] !==0 && arr[i][j] !==-0 ){
+			return 'array\'s  element is not a numbers';
+        }
+		if(arr[i][j] < 0  && maxNegative <= arr[i][j]){
 			maxNegative = arr[i][j];
+			isNegative = true;
         }
     }
+if(isNegative === true){
 res *= maxNegative;
+maxNegative = -Infinity;
+isNegative = false;
 }
-if(maxNegative === -Infinity){
+}
+if(isNegative === 0){
 	return 'No negatives';
 	}
 return res;
 }
-
 
 //homework 3.8
 
