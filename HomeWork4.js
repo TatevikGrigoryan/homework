@@ -53,22 +53,17 @@ function digitsOddOrNot(num) {
 
 function getMinimalPositive(arr) {
     arr = arr.filter(i => i >= 0);
-    if (arr.length === 1 || arr.length === 0) {
-        if (arr[0] >= 0) {
+    if (arr.length === 1){ 
             return arr[0];
-        } else {
+    } else if (arr.length === 0) 
             return -1;
-        }
-    } else {
-        if (arr[0] < arr[1]) {
-            arr.splice(1, 1);
-            return getMinimalPositive(arr);
-        }
+     if (arr[0] < arr[1]) {
+        arr.splice(1, 1);
+        return getMinimalPositive(arr);
+       }
         arr.splice(0, 1);
         return getMinimalPositive(arr);
-    }
 }
-
 //homework 4.5
 
 function getViolatIndex(arr) {
