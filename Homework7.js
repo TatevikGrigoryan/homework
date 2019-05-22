@@ -1,4 +1,4 @@
-//Homework7.1
+//Homework 7.1
 /*Create an Author class and a Book class.
 Author should have: name, email, gender. 
 It should have appropriate getters and setters.
@@ -93,7 +93,6 @@ class Account{
 		this.id = id;
 		this.name = name;
 		this.balance = balance;
-		this.id = id;
 	}
 	get name(){
 		return `${this._name}`;
@@ -108,12 +107,12 @@ class Account{
 		this._balance = value;
 	}
 	credit(amount){
-		this.balance = this.balance + amount; 
+		this.balance = +this.balance + amount; 
 		return `New balance is ${this.balance}`;
 	}
 	debit(amount){
 		if(amount < this.balance){
-			this.balance = this.balance - amount;
+			this.balance = +this.balance - amount;
 		}else {
 		return `Amount exceeded balance`;
 		}
@@ -122,7 +121,7 @@ class Account{
 		if(amount < this.balance){
 			return "Amount exceeded balance."
 		}else{
-			this.balance = anoterAcount + (this.balance - amount);
+			this.balance =  this.balance - amount + anoterAccount;
 			return this.balance;
 		}
 	}
@@ -139,7 +138,6 @@ class Account{
 	}
 	
 }
-
 //homework 7.3
 /*Write classes: Person, Student, Staff.
 Person should have: firstName, lastName, gender, age.
